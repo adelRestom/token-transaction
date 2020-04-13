@@ -6,8 +6,8 @@ cordapp {
     targetPlatformVersion corda_platform_version
     minimumPlatformVersion corda_platform_version
     workflow {
-        name "Template Flows"
-        vendor "Corda Open Source"
+        name "Token-Transaction Flows CorDapp"
+        vendor "Adel Rustum"
         licence "Apache License, Version 2.0"
         versionId 1
     }
