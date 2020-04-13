@@ -179,14 +179,14 @@ public class TokenTransactionFlowTests {
             try {
                 // type = ISSUE.
                 FieldInfo type = getField("type",
-                        TokenTransactionSchemaV1.PersistenTokenTransaction.class);
+                        TokenTransactionSchemaV1.PersistentTokenTransaction.class);
                 QueryCriteria typeIsIssue = new VaultCustomQueryCriteria(Builder.equal(type, "ISSUE"));
 
                 // Average quantity by to-holder.
                 FieldInfo quantity = getField("quantity",
-                        TokenTransactionSchemaV1.PersistenTokenTransaction.class);
+                        TokenTransactionSchemaV1.PersistentTokenTransaction.class);
                 FieldInfo toHolder = getField("toHolder",
-                        TokenTransactionSchemaV1.PersistenTokenTransaction.class);
+                        TokenTransactionSchemaV1.PersistentTokenTransaction.class);
                 QueryCriteria avgQtyByToHolder = new VaultCustomQueryCriteria(Builder.avg(quantity,
                         Collections.singletonList(toHolder), Sort.Direction.DESC));
 

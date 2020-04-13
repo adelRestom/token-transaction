@@ -82,7 +82,7 @@ public class TokenTransactionState implements LinearState, QueryableState {
     @Override
     public PersistentState generateMappedObject(@NotNull MappedSchema schema) {
         if (schema instanceof TokenTransactionSchemaV1) {
-            return new TokenTransactionSchemaV1.PersistenTokenTransaction(
+            return new TokenTransactionSchemaV1.PersistentTokenTransaction(
                     this.getLinearId().getId().toString(),
                     this.getExplorer().getName().toString(),
                     this.getTimestamp(),
