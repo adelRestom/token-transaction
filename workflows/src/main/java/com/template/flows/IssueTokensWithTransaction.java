@@ -7,7 +7,7 @@ import com.r3.corda.lib.tokens.contracts.types.TokenType;
 import com.r3.corda.lib.tokens.contracts.utilities.AmountUtilitiesKt;
 import com.r3.corda.lib.tokens.money.FiatCurrency;
 import com.template.contracts.TokenTransactionContract;
-import com.template.states.TokenTransactionState;
+import com.template.states.TokenTransaction;
 import net.corda.core.contracts.Amount;
 import net.corda.core.contracts.Command;
 import net.corda.core.contracts.UniqueIdentifier;
@@ -61,7 +61,7 @@ public class IssueTokensWithTransaction {
             FungibleToken usdToken = new FungibleToken(tokenAmount, holder, null);
 
             // Create token-transaction.
-            TokenTransactionState tokenTransaction = new TokenTransactionState(new UniqueIdentifier(), explorer,
+            TokenTransaction tokenTransaction = new TokenTransaction(new UniqueIdentifier(), explorer,
                     Instant.now(), "ISSUE", getOurIdentity().getName().toString(),
                     holder.getName().toString(), quantity);
 

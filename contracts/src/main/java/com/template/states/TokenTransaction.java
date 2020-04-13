@@ -21,7 +21,7 @@ import java.util.Objects;
 // * State *
 // *********
 @BelongsToContract(TokenTransactionContract.class)
-public class TokenTransactionState implements LinearState, QueryableState {
+public class TokenTransaction implements LinearState, QueryableState {
 
     @NotNull
     private final UniqueIdentifier linearId;
@@ -47,9 +47,9 @@ public class TokenTransactionState implements LinearState, QueryableState {
     // Tokens SDK uses "Amount.quantity" of type "long", so we'll use the same.
     private final long quantity;
 
-    public TokenTransactionState(@NotNull UniqueIdentifier linearId, @NotNull Party explorer,
-                                 @NotNull Instant timestamp, @NotNull String type,
-                                 String fromHolder, String toHolder, long quantity) {
+    public TokenTransaction(@NotNull UniqueIdentifier linearId, @NotNull Party explorer,
+                            @NotNull Instant timestamp, @NotNull String type,
+                            String fromHolder, String toHolder, long quantity) {
         if (quantity < 0)
             throw new IllegalStateException(
                     String.format("Quantity cannot be a negative value %d.", quantity));
@@ -133,7 +133,7 @@ public class TokenTransactionState implements LinearState, QueryableState {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TokenTransactionState that = (TokenTransactionState) o;
+        TokenTransaction that = (TokenTransaction) o;
         return getQuantity() == that.getQuantity() &&
                 getLinearId().equals(that.getLinearId()) &&
                 getExplorer().equals(that.getExplorer()) &&

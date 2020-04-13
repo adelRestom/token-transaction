@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.r3.corda.lib.tokens.contracts.states.FungibleToken;
 import com.template.flows.IssueTokensWithTransaction;
 import com.template.schemas.TokenTransactionSchemaV1;
-import com.template.states.TokenTransactionState;
+import com.template.states.TokenTransaction;
 import net.corda.core.concurrent.CordaFuture;
 import net.corda.core.contracts.StateAndRef;
 import net.corda.core.identity.CordaX500Name;
@@ -105,10 +105,10 @@ public class TokenTransactionFlowTests {
             assertEquals(recordedToken.getAmount().getQuantity(), quantityInSmallestDenomination);
 
             // Check recorded token-transaction.
-            List<TokenTransactionState> tokenTransactionOutputs = recordedTx.getTx()
-                    .outputsOfType(TokenTransactionState.class);
+            List<TokenTransaction> tokenTransactionOutputs = recordedTx.getTx()
+                    .outputsOfType(TokenTransaction.class);
             assert (tokenTransactionOutputs.size() == 1);
-            TokenTransactionState recordedTokenTransaction = tokenTransactionOutputs.get(0);
+            TokenTransaction recordedTokenTransaction = tokenTransactionOutputs.get(0);
             assertEquals(recordedTokenTransaction.getExplorer(), explorerParty);
             assertEquals(recordedTokenTransaction.getType(), "ISSUE");
             assertEquals(recordedTokenTransaction.getFromHolder(), bankParty.getName().toString());
@@ -131,10 +131,10 @@ public class TokenTransactionFlowTests {
 
         // Check the recorded token-transaction state in explorer's vault (i.e. token-transaction's only participant).
         explorer.transaction(() -> {
-            List<StateAndRef<TokenTransactionState>> tokenTransactions = explorer.getServices().getVaultService()
-                    .queryBy(TokenTransactionState.class).getStates();
+            List<StateAndRef<TokenTransaction>> tokenTransactions = explorer.getServices().getVaultService()
+                    .queryBy(TokenTransaction.class).getStates();
             assertEquals(1, tokenTransactions.size());
-            TokenTransactionState recordedTokenTransaction = tokenTransactions.get(0).getState().getData();
+            TokenTransaction recordedTokenTransaction = tokenTransactions.get(0).getState().getData();
             assertEquals(recordedTokenTransaction.getExplorer(), explorerParty);
             assertEquals(recordedTokenTransaction.getType(), "ISSUE");
             assertEquals(recordedTokenTransaction.getFromHolder(), bankParty.getName().toString());
@@ -194,8 +194,8 @@ public class TokenTransactionFlowTests {
                 QueryCriteria avgIssuedQtyByToHolder = typeIsIssue.and(avgQtyByToHolder);
 
                 // Execute query.
-                Vault.Page<TokenTransactionState> tokenTransactions = explorer.getServices().getVaultService()
-                        .queryBy(TokenTransactionState.class, avgIssuedQtyByToHolder);
+                Vault.Page<TokenTransaction> tokenTransactions = explorer.getServices().getVaultService()
+                        .queryBy(TokenTransaction.class, avgIssuedQtyByToHolder);
 
                 // We issued to Alice and Bob; so we should have 2 groups.
                 // Issued to Alice 50, 75, 100 -> avg = 75.

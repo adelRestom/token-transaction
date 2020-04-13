@@ -1,6 +1,6 @@
 package com.template.contracts;
 
-import com.template.states.TokenTransactionState;
+import com.template.states.TokenTransaction;
 import net.corda.core.contracts.UniqueIdentifier;
 import net.corda.core.identity.CordaX500Name;
 import net.corda.testing.contracts.DummyContract;
@@ -26,7 +26,7 @@ public class TokenTransactionContractTests {
     static private final TestIdentity bob = new TestIdentity(
             new CordaX500Name("Bob", "London", "GB"));
 
-    static private final TokenTransactionState tokenTransaction = new TokenTransactionState(new UniqueIdentifier(),
+    static private final TokenTransaction tokenTransaction = new TokenTransaction(new UniqueIdentifier(),
             explorer.getParty(), Instant.now(), "MOVE", alice.getParty().getName().toString(),
             bob.getParty().getName().toString(), 10);
 

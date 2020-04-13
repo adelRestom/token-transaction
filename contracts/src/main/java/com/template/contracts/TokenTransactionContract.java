@@ -1,6 +1,6 @@
 package com.template.contracts;
 
-import com.template.states.TokenTransactionState;
+import com.template.states.TokenTransaction;
 import net.corda.core.contracts.CommandData;
 import net.corda.core.contracts.CommandWithParties;
 import net.corda.core.contracts.Contract;
@@ -33,10 +33,10 @@ public class TokenTransactionContract implements Contract {
                     Commands.Create.class, Collections.emptyList(), Collections.emptyList());
             require.using("There should be only one command.", tokenTransactionCreateCommands.size() == 1);
 
-            final List<TokenTransactionState> tokenTransactionInputs = tx.inputsOfType(TokenTransactionState.class);
+            final List<TokenTransaction> tokenTransactionInputs = tx.inputsOfType(TokenTransaction.class);
             require.using("There should be no inputs.", tokenTransactionInputs.isEmpty());
 
-            final List<TokenTransactionState> tokenTransactionOutputs = tx.outputsOfType(TokenTransactionState.class);
+            final List<TokenTransaction> tokenTransactionOutputs = tx.outputsOfType(TokenTransaction.class);
             require.using("There should be outputs.", !tokenTransactionOutputs.isEmpty());
 
             // Transaction signature constraints.
