@@ -7,4 +7,4 @@ A `TokenTransaction` state is combined with the token in one transaction, giving
 - Adding the reporting data happens in an atomic way while adding the tokens data; eliminating any discrepancy between the two.  
 
 To see how the Token-Transaction CorDapp works, explore the flow tests under `workflows\src\test`.  
-A detailed explanation of the CorDapp can be found [here]().
+A detailed explanation of the CorDapp can be found [here](https://blog.b9lab.com/elevating-tokens-sdk-with-on-ledger-custom-reporting-57174ba614ba).
